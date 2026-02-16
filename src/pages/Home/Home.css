@@ -28,6 +28,8 @@
   width: 90%;
   max-width: 1400px;
   margin: auto;
+  margin-bottom: 50px;
+  
 }
 
 /* ================= HERO SLIDER ================= */
@@ -144,6 +146,8 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 30px;
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
 .home-page .property-card {
@@ -306,7 +310,6 @@
 /* ================= CTA ================= */
 .home-page .cta-section {
   padding: 50px 0;
-  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
   text-align: center;
   color: white;
   margin-bottom: 35px;
@@ -454,7 +457,7 @@
 
 .home-page .section-subtitle {
   font-size: 1rem;
-  color: #6c757d;
+  color: #7d6c7a;
   margin-top: 0px;
 }
 
@@ -473,7 +476,7 @@
   width: 100%;
   max-width: 1120px; /* EXACTLY 3 cards */
   overflow: hidden;
-  margin: 0 auto;
+  margin: 50px;
 }
 
 /* ================= SLIDER TRACK ================= */
@@ -507,7 +510,7 @@
 
 .home-page .section-subtitle {
   font-size: 1rem;
-  color: #6c757d;
+ color:#083a7a;
   margin-top: 10px;
 }
 
@@ -517,6 +520,8 @@
   position: relative;
   display: flex;
   align-items: center;
+  margin-left: 50px;
+  margin-right: 50px;
   justify-content: center;
 }
 

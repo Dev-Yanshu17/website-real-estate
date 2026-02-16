@@ -74,7 +74,8 @@ const Project = () => {
           projectType: project.projectType,
 
           // ✅ STEP-6 FIX — safely pull address
-          location: project.location?.address || "Location not specified",
+          location: project.location || "Location not specified",
+
 
           amenities: project.amenities || [],
           images,
