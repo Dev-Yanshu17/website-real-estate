@@ -20,6 +20,8 @@ const Project = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const [searchLocation, setSearchLocation] = useState("");
+
 
   useEffect(() => {
     AOS.init({ duration: 800, once: true });
@@ -138,8 +140,18 @@ const Project = () => {
         <p>Explore our premium collection of residential projects</p>
       </div>
 
+      <div className="project-search-bar">
+  <input
+    type="text"
+    placeholder="Search by location (e.g. Surat, Mumbai, Ahmedabad...)"
+    value={searchLocation}
+    onChange={(e) => setSearchLocation(e.target.value)}
+  />
+</div>
+
+
       <div className="projects-grid">
-        {projects.map((project) => (
+        {projects.filter((project) =>project.location.toLowerCase().includes(searchLocation.toLowerCase())).map((project) => (
           <div
             className="project-card"
             key={project.id}

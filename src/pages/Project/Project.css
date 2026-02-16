@@ -148,3 +148,27 @@
     padding: 4px 8px;
   }
 }
+/* ================= SEARCH BAR ================= */
+
+.project-search-bar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.project-search-bar input {
+  width: 100%;
+  max-width: 450px;
+  padding: 12px 16px;
+  font-size: 15px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.project-search-bar input:focus {
+  border-color: #1e90ff;
+  box-shadow: 0 3px 10px rgba(30,144,255,0.3);
+}
