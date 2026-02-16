@@ -1,0 +1,204 @@
+/* ===============================
+   CONTACT PAGE WRAPPER
+================================ */
+.contact-wrapper {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #f0f4f8, #ffffff);
+  min-height: 100vh;
+  padding: 0;
+  margin-top: 100px;
+  color: #1f2937; /* dark-gray text */
+}
+
+/* ===============================
+   HERO SECTION
+================================ */
+.contact-hero {
+  text-align: center;
+  padding: 80px 20px 40px 20px;
+  background: linear-gradient(135deg, #38bdf8, #2563eb);
+  color: #fff;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+}
+
+.contact-hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+}
+
+.contact-hero p {
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ===============================
+   MAIN CONTACT CONTAINER
+================================ */
+.contact-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+/* ===============================
+   CONTACT INFO BOX
+================================ */
+.contact-info-box {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 36px 28px;
+  max-width: 450px;
+  flex: 1 1 400px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-info-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.12);
+}
+
+.contact-info-box h2 {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+  color: #2563eb;
+}
+
+.contact-info-box p {
+  margin-bottom: 20px;
+  line-height: 1.6;
+  color: #374151;
+}
+
+.info-row-for {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 500;
+}
+
+.info-row span {
+  font-size: 1.2rem;
+}
+
+/* ===============================
+   OPENING HOURS
+================================ */
+.hours-title {
+  font-weight: 600;
+  margin-top: 20px;
+  margin-bottom: 6px;
+  color: #2563eb;
+}
+
+/* ===============================
+   CONTACT FORM CARD
+================================ */
+.contact-form-card {
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 36px 28px;
+  max-width: 500px;
+  flex: 1 1 400px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.12);
+}
+
+.contact-form h2 {
+  margin-bottom: 18px;
+}
+
+.contact-form input {
+  width: 100%;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  border-radius: 12px;
+  border: 1px solid #d1d5db;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.contact-form input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.25);
+}
+
+.two-col {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+button[type="submit"] {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+  background: #1d4ed8;
+}
+
+/* ===============================
+   SUCCESS / ERROR MESSAGES
+================================ */
+.success-msg {
+  color: #16a34a;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.error-msg {
+  color: #dc2626;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 1024px) {
+  .contact-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .two-col {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-hero h1 {
+    font-size: 2rem;
+  }
+
+  .contact-hero p {
+    font-size: 1rem;
+  }
+}
