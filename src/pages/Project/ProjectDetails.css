@@ -402,3 +402,32 @@
   background-color: white;
   color: #3498db;
 }
+.cta-btn.primary {
+  background: white;
+  color: #3498db;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+.cta-btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+}
+.cta-section {
+  position: relative;
+  z-index: 10;
+}
+
+.cta-btn {
+  position: relative;
+  z-index: 20;
+  pointer-events: auto;
+}
+.floorplan-modal,
+.fullscreen-gallery-modal {
+  pointer-events: auto;
+}
+
+.project-hero,
+.gallery-section {
+  pointer-events: auto;
+}

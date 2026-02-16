@@ -701,6 +701,9 @@ const longitude = project.longitude;
               <button className="cta-btn secondary" onClick={() => navigate("/projects")}>
                 <FaArrowLeft /> Back to Projects
               </button>
+              <button className="cta-btn primary"onClick={() => navigate("/contact")}>
+                      Book Now 
+              </button>
             </div>
           </div>
         </div>
