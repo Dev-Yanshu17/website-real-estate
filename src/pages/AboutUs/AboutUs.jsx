@@ -117,11 +117,11 @@ const AboutUs = () => {
       title: "Client-Centric",
       description: "Your vision is our blueprint for success"
     },
-    {
-      icon: <FaLeaf />,
-      title: "Sustainability",
-      description: "Eco-friendly materials and energy-efficient designs"
-    }
+    // {
+    //   icon: <FaLeaf />,
+    //   title: "Sustainability",
+    //   description: "Eco-friendly materials and energy-efficient designs"
+    // }
   ];
 
   // Milestones
@@ -134,12 +134,6 @@ const AboutUs = () => {
   ];
 
   // Statistics
-  const stats = [
-    { value: "250+", label: "Happy Families" },
-    { value: "95%", label: "Client Satisfaction" },
-    { value: "₹500Cr+", label: "Total Investment" },
-    { value: "50+", label: "Team Members" }
-  ];
 
   return (
     <div className="about-page">
@@ -276,39 +270,61 @@ const AboutUs = () => {
         </div>
       </section> */}
 
-{/* Timeline - Horizontal */}
-{/* <section className="timeline-section"> */}
+{/* Our Journey Section */}
+<section className="journey-section">
   <div className="container">
-    <div className="section-header">
-      <h2 className="section-title">
-        <span className="title-decor">Our</span> Journey
+    <div className="journey-header">
+      <h2>
+        Our <span>Journey</span>
       </h2>
-      {/* <p className="section-subtitle">
-        Key milestones in our growth story
-      </p> */}
+      <p>Key milestones that shaped our success story</p>
     </div>
-    
-    <div className="timeline-container">
-      <div className="timeline-line"></div>
+
+    <div className="journey-timeline">
+      <div className="journey-path"></div>
       
-      <div className="timeline-items">
+      <div className="journey-items">
         {milestones.map((milestone, index) => (
-          <div className="timeline-item" key={index}>
-            <div className="timeline-marker">
-              <div className="marker-circle"></div>
+          <div className="journey-card" key={index}>
+            <div className="journey-year">{milestone.year}</div>
+            <div className="journey-icon">
+              {index === 0 && <FaCalendarAlt />}
+              {index === 1 && <FaHome />}
+              {index === 2 && <FaBuilding />}
+              {index === 3 && <FaAward />}
+              {index === 4 && <FaChartLine />}
             </div>
-            <div className="timeline-content">
-              <div className="timeline-year">{milestone.year}</div>
-              <h3 className="timeline-title">{milestone.title}</h3>
-              <p className="timeline-desc">{milestone.description}</p>
-            </div>
+            <h3 className="journey-title">{milestone.title}</h3>
+            <p className="journey-description">{milestone.description}</p>
           </div>
         ))}
       </div>
-    </div>
-  </div>
-{/* </section> */}
 
+      {/* <div className="journey-counter">
+        <div className="journey-counter-item">
+          <div className="journey-counter-number">12+</div>
+          <div className="journey-counter-label">Years</div>
+        </div>
+        <div className="journey-counter-item">
+          <div className="journey-counter-number">25+</div>
+          <div className="journey-counter-label">Projects</div>
+        </div>
+        <div className="journey-counter-item">
+          <div className="journey-counter-number">1000+</div>
+          <div className="journey-counter-label">Homes</div>
+        </div>
+        <div className="journey-counter-item">
+          <div className="journey-counter-number">5</div>
+          <div className="journey-counter-label">Awards</div>
+        </div>
+      </div> */}
+    </div>
+
+    {/* Floating decorative elements */}
+    <div className="journey-floating-element journey-floating-1"></div>
+    <div className="journey-floating-element journey-floating-2"></div>
+  </div>
+</section>
 {/* ================= TESTIMONIALS ================= */}
 {/* <section className="testimonial-section"> */}
   <div className="container">

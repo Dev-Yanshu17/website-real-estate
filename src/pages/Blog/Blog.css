@@ -4,6 +4,7 @@
 .blog-section {
   padding: 6rem 2rem;
   background: white;
+  margin-top: 100px;
   position: relative;
   overflow: hidden;
 }
