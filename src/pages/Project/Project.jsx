@@ -19,9 +19,9 @@ const Project = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const navigate = useNavigate();
   const [searchLocation, setSearchLocation] = useState("");
 
+  const navigate = useNavigate();
 
   useEffect(() => {
     AOS.init({ duration: 800, once: true });
@@ -31,35 +31,30 @@ const Project = () => {
   const fetchProjects = async () => {
     try {
       setLoading(true);
-
       const res = await axios.get(`${BASE_URL}/api/lily`);
 
       const mapped = res.data.data.map((project) => {
-        // ===== IMAGES =====
         let images = [];
 
         if (project.images?.length) {
           images = project.images.map((img) => {
             let url = img.url || img;
-
             if (url.startsWith("http")) return url;
 
             if (url.startsWith("/uploads")) {
               const file = url.split("/").pop();
               return `${BASE_URL}/uploads/projects/${file}`;
             }
-
             return `${BASE_URL}${url}`;
           });
         }
 
         if (!images.length) {
           images = [
-            "https://via.placeholder.com/400x250/cccccc/969696?text=Project+Image"
+            "https://via.placeholder.com/400x250/cccccc/969696?text=Project+Image",
           ];
         }
 
-        // ===== FLOOR PLANS =====
         const floorPlans =
           project.floorPlans?.map((fp) => {
             let url = fp.url || fp;
@@ -74,19 +69,11 @@ const Project = () => {
           id: project.id,
           projectName: project.projectName,
           projectType: project.projectType,
-
-          // ✅ STEP-6 FIX — safely pull address
           location: project.location || "Location not specified",
-
-
+          description: project.description || "",
           amenities: project.amenities || [],
           images,
           floorPlans,
-          totalWings: project.totalWings,
-          totalFloors: project.totalFloors,
-          perFloorHouse: project.perFloorHouse,
-          totalPlots: project.totalPlots,
-          totalHouse: project.totalHouse
         };
       });
 
@@ -103,6 +90,18 @@ const Project = () => {
     e.target.src =
       "https://via.placeholder.com/400x250/cccccc/969696?text=Image+Not+Found";
   };
+
+  // 🔍 ADVANCED SEARCH FILTER
+  const filteredProjects = projects.filter((project) => {
+    const keyword = searchLocation.toLowerCase();
+
+    return (
+      project.projectName?.toLowerCase().includes(keyword) ||
+      project.location?.toLowerCase().includes(keyword) ||
+      project.description?.toLowerCase().includes(keyword) ||
+      project.amenities.join(" ").toLowerCase().includes(keyword)
+    );
+  });
 
   if (loading) {
     return (
@@ -140,24 +139,27 @@ const Project = () => {
         <p>Explore our premium collection of residential projects</p>
       </div>
 
+      {/* 🔍 SEARCH BAR */}
       <div className="project-search-bar">
-  <input
-    type="text"
-    placeholder="Search by location (e.g. Surat, Mumbai, Ahmedabad...)"
-    value={searchLocation}
-    onChange={(e) => setSearchLocation(e.target.value)}
-  />
-</div>
+        <input
+          type="text"
+          placeholder="Search by name, location, amenities..."
+          value={searchLocation}
+          onChange={(e) => setSearchLocation(e.target.value)}
+        />
+      </div>
 
+      {filteredProjects.length === 0 && (
+        <div className="no-projects-container">
+          <h3>No matching projects found</h3>
+          <p>Try different keywords</p>
+        </div>
+      )}
 
       <div className="projects-grid">
-        {projects.filter((project) =>project.location.toLowerCase().includes(searchLocation.toLowerCase())).map((project) => (
-          <div
-            className="project-card"
-            key={project.id}
-            data-aos="fade-up"
-          >
-            {/* ===== IMAGE SLIDER ===== */}
+        {filteredProjects.map((project) => (
+          <div className="project-card" key={project.id} data-aos="fade-up">
+            {/* IMAGE SLIDER */}
             <div className="project-image-container">
               <Swiper
                 modules={[Navigation, Pagination]}
@@ -171,25 +173,19 @@ const Project = () => {
                       src={img}
                       alt={project.projectName}
                       className="project-image"
-                      onClick={() =>
-                        navigate(`/property/${project.id}`)
-                      }
+                      onClick={() => navigate(`/property/${project.id}`)}
                       onError={handleImageError}
                     />
                   </SwiperSlide>
                 ))}
               </Swiper>
 
-              <div className="project-badge">
-                {project.projectType}
-              </div>
+              <div className="project-badge">{project.projectType}</div>
             </div>
 
-            {/* ===== PROJECT INFO ===== */}
+            {/* CONTENT */}
             <div className="project-content">
-              <h3 className="project-name">
-                {project.projectName}
-              </h3>
+              <h3 className="project-name">{project.projectName}</h3>
 
               <div className="project-info">
                 <div className="info-item">
@@ -200,9 +196,7 @@ const Project = () => {
 
               <button
                 className="view-details-btn"
-                onClick={() =>
-                  navigate(`/property/${project.id}`)
-                }
+                onClick={() => navigate(`/property/${project.id}`)}
               >
                 View Details
               </button>
