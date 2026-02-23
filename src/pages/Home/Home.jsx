@@ -23,6 +23,7 @@ const Home = () => {
 
   const [testimonials, setTestimonials] = useState([]);
   const [testimonialIndex, setTestimonialIndex] = useState(0);
+  const [selectedStatus, setSelectedStatus] = useState("all");
 
   const navigate = useNavigate();
 
@@ -54,46 +55,31 @@ const Home = () => {
   ];
 
   /* ================= FETCH PROPERTIES ================= */
-  useEffect(() => {
-    fetchProperties();
-  }, []);
+useEffect(() => {
+  fetchProperties(selectedStatus);
+}, [selectedStatus]);
 
- const fetchProperties = async () => {
+ const fetchProperties = async (status = "all") => {
   try {
     setLoading(true);
-    const res = await axios.get("http://localhost:5000/api/lily");
+
+    let url = "http://localhost:5000/api/lily";
+
+    if (status !== "all") {
+      url += `?status=${status}`;
+    }
+
+    const res = await axios.get(url);
 
     const mapped = res.data.data.map((project) => {
       let imageUrl;
-      
-      // Check if project has images
-      if (project.images && project.images.length > 0) {
-        // Get the first image object
-        const firstImage = project.images[0];
-        
-        // Check the structure of the image object
-        if (firstImage && typeof firstImage === 'object' && firstImage.url) {
 
-            // Extract filename
-          const filename = firstImage.url.split('/').pop();
-          
-          // Try two possible locations
-          const possibleUrls = [
-            `http://localhost:5000/uploads/projects/${filename}`,
-            `http://localhost:5000${firstImage.url}`
-          ];
-          
-          // Use the first one that works (or fallback to default)
-          imageUrl = possibleUrls[0];
-        } else if (typeof firstImage === 'string') {
-          // If it's already a string URL
-          imageUrl = firstImage.startsWith('http') 
-            ? firstImage 
-            : `http://localhost:5000${firstImage}`;
-        }
+      if (project.images && project.images.length > 0) {
+        const firstImage = project.images[0];
+        const filename = firstImage.url.split('/').pop();
+        imageUrl = `http://localhost:5000/uploads/projects/${filename}`;
       }
-      
-      // Fallback to local image if no project image
+
       if (!imageUrl) {
         imageUrl = require("../../images/slide1.jpg");
       }
@@ -103,13 +89,13 @@ const Home = () => {
         title: project.projectName,
         location: project.location,
         image: imageUrl,
-        type: project.projectType
+        type: project.projectType,
+        status: project.status
       };
     });
 
     setProperties(mapped);
   } catch (err) {
-    console.error("Error fetching properties:", err);
     setError("Failed to load properties");
   } finally {
     setLoading(false);
@@ -225,6 +211,36 @@ const Home = () => {
           <div className="section-header">
             <h2>Featured Properties</h2>
           </div>
+
+         <div className="status-filter-wrapper">
+  <button
+    className={`status-btn ${selectedStatus === "all" ? "active" : ""}`}
+    onClick={() => setSelectedStatus("all")}
+  >
+    All
+  </button>
+
+  <button
+    className={`status-btn ${selectedStatus === "active" ? "active" : ""}`}
+    onClick={() => setSelectedStatus("active")}
+  >
+    Active
+  </button>
+
+  <button
+    className={`status-btn ${selectedStatus === "completed" ? "active" : ""}`}
+    onClick={() => setSelectedStatus("completed")}
+  >
+    Completed
+  </button>
+
+  <button
+    className={`status-btn ${selectedStatus === "upcoming" ? "active" : ""}`}
+    onClick={() => setSelectedStatus("upcoming")}
+  >
+    Upcoming
+  </button>
+</div>
 
           {loading && (
             <div className="loading-container">
