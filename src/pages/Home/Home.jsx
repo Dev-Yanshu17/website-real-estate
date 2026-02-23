@@ -23,7 +23,7 @@ const Home = () => {
 
   const [testimonials, setTestimonials] = useState([]);
   const [testimonialIndex, setTestimonialIndex] = useState(0);
-  const [selectedStatus, setSelectedStatus] = useState("all");
+  const [selectedType, setSelectedType] = useState("all");
 
   const navigate = useNavigate();
 
@@ -56,17 +56,17 @@ const Home = () => {
 
   /* ================= FETCH PROPERTIES ================= */
 useEffect(() => {
-  fetchProperties(selectedStatus);
-}, [selectedStatus]);
+  fetchProperties(selectedType);
+}, [selectedType]);
 
- const fetchProperties = async (status = "all") => {
+ const fetchProperties = async (type = "all") => {
   try {
     setLoading(true);
 
     let url = "http://localhost:5000/api/lily";
 
-    if (status !== "all") {
-      url += `?status=${status}`;
+    if (type !== "all") {
+      url += `?type=${type}`;
     }
 
     const res = await axios.get(url);
@@ -212,34 +212,36 @@ useEffect(() => {
             <h2>Featured Properties</h2>
           </div>
 
-         <div className="status-filter-wrapper">
+        <div className="status-filter-wrapper">
+
   <button
-    className={`status-btn ${selectedStatus === "all" ? "active" : ""}`}
-    onClick={() => setSelectedStatus("all")}
+    className={`status-btn ${selectedType === "all" ? "active" : ""}`}
+    onClick={() => setSelectedType("all")}
   >
     All
   </button>
 
   <button
-    className={`status-btn ${selectedStatus === "active" ? "active" : ""}`}
-    onClick={() => setSelectedStatus("active")}
+    className={`status-btn ${selectedType === "flat" ? "active" : ""}`}
+    onClick={() => setSelectedType("flat")}
   >
-    Active
+    Flat / Apartment
   </button>
 
   <button
-    className={`status-btn ${selectedStatus === "completed" ? "active" : ""}`}
-    onClick={() => setSelectedStatus("completed")}
+    className={`status-btn ${selectedType === "banglow" ? "active" : ""}`}
+    onClick={() => setSelectedType("banglow")}
   >
-    Completed
+    Banglow
   </button>
 
   <button
-    className={`status-btn ${selectedStatus === "upcoming" ? "active" : ""}`}
-    onClick={() => setSelectedStatus("upcoming")}
+    className={`status-btn ${selectedType === "row-house" ? "active" : ""}`}
+    onClick={() => setSelectedType("row-house")}
   >
-    Upcoming
+    Row-House
   </button>
+
 </div>
 
           {loading && (
