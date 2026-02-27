@@ -11,7 +11,7 @@ import {
   FaMapMarkerAlt
 } from "react-icons/fa";
 
-import { Link } from "react-router-dom";   // ⭐ IMPORTANT
+import { Link } from "react-router-dom";
 import logo from "../../images/logo_removed_bg.png";
 
 const Footer = () => {
@@ -108,7 +108,7 @@ const Footer = () => {
             </div>
             {subscribed && (
               <div className="success-message">
-                🎉 Successfully subscribed!
+               Successfully subscribed!
               </div>
             )}
           </form> */}

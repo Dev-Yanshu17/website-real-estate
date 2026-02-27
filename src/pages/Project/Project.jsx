@@ -91,7 +91,7 @@ const Project = () => {
       "https://via.placeholder.com/400x250/cccccc/969696?text=Image+Not+Found";
   };
 
-  // 🔍 ADVANCED SEARCH FILTER
+  // ADVANCED SEARCH FILTER
   const filteredProjects = projects.filter((project) => {
     const keyword = searchLocation.toLowerCase();
 
