@@ -435,7 +435,7 @@
 .gallery-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.95);
+  background: rgba(255, 255, 255, 0.95);  /* WHITE BACKGROUND */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -463,15 +463,15 @@
   right: 0;
   background: none;
   border: none;
-  color: white;
+  color: rgb(0, 0, 0);
   font-size: 24px;
   cursor: pointer;
 }
 
 .arrow {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(0,0,0,0.1);
+  color: black;
   border: none;
-  color: white;
   font-size: 30px;
   cursor: pointer;
   padding: 10px;
@@ -491,9 +491,21 @@
   perspective: 1200px;
 }
 
+.gallery-modal-content {
+  width: 500px;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .gallery-image {
-  max-width: 90%;
-  max-height: 80vh;
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
+  width: 500px;
+  height: 500px;
+  object-fit: cover;   /* keeps image filled without distortion */
+  border-radius: 10px;
+   display: flex;
+   background: white;
+  justify-content: center;
+  align-items: center;
 }

@@ -463,9 +463,10 @@ const ProjectDetails = () => {
 
 useEffect(() => {
   if (showGalleryModal) {
-    setRotationY({ x: 0, y: 0 });
+    setRotationY();
   }
 }, [showGalleryModal]);
+
 
 const handleMouseDown = (e) => {
   isDragging.current = true;
@@ -478,7 +479,7 @@ const handleMouseMove = (e) => {
   const delta = e.clientX - lastX.current;
   lastX.current = e.clientX;
 
-  setRotationY((prev) => prev + delta);
+  setRotationY((prev) => prev + delta * 0.5);
 };
 
 const handleMouseUp = () => {
@@ -492,7 +493,7 @@ const handleMouseUp = () => {
       if (amenityLower.includes(key.toLowerCase())) return icon;
     }
     return iconMap.DEFAULT;
-  };
+  };  
 
   const openGalleryModal = (index) => {
     setCurrentImageIndex(index);
@@ -514,17 +515,19 @@ const handleMouseUp = () => {
   };
 
 useEffect(() => {
-  if (!showGalleryModal) return;
+  if (!showGalleryModal || !project?.images) return;
 
   const handleKeyDown = (e) => {
     if (e.key === "Escape") {
       setShowGalleryModal(false);
     }
+
     if (e.key === "ArrowLeft") {
       setCurrentImageIndex((prev) =>
         prev === 0 ? project.images.length - 1 : prev - 1
       );
     }
+
     if (e.key === "ArrowRight") {
       setCurrentImageIndex((prev) =>
         prev === project.images.length - 1 ? 0 : prev + 1
@@ -534,7 +537,7 @@ useEffect(() => {
 
   window.addEventListener("keydown", handleKeyDown);
   return () => window.removeEventListener("keydown", handleKeyDown);
-}, [showGalleryModal, project]);
+}, [showGalleryModal, project?.images]);
 
   if (loading) {
     return (
@@ -557,7 +560,7 @@ useEffect(() => {
     );
   }
 
- const latitude = project.latitude;
+const latitude = project.latitude;
 const longitude = project.longitude;
 
 
@@ -790,6 +793,9 @@ const longitude = project.longitude;
       transition: isDragging.current ? "none" : "transform 0.1s ease",
       cursor: "grab",
     }}
+    onError={(e)=>{
+  e.target.src="https://via.placeholder.com/800x600?text=Image";
+}}
   />
 </div>
 
