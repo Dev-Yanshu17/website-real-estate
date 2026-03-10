@@ -98,7 +98,7 @@
 
 .nav-links a {
   text-decoration: none;
-  color: rgba(255, 255, 255, 0.85);
+  color: black;
   font-weight: 600;
   font-size: 1rem;
   padding: 0.5rem 1rem;
@@ -157,6 +157,7 @@
 /* Call Box */
 .nav-actions {
   display: flex;
+  width: 300px;
   align-items: center;
 }
 
@@ -208,6 +209,7 @@
 
 .call-text {
   display: flex;
+  width: 100%;  
   flex-direction: column;
   gap: 0.2rem;
 }
