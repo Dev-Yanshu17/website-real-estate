@@ -399,6 +399,7 @@ const ProjectDetails = () => {
   const lastX = React.useRef(0);
   const viewerRef = useRef(null);
 const viewerContainerRef = useRef(null); 
+const [isHovered, setIsHovered] = useState(false);
 
 useEffect(() => {
   if (!showGalleryModal || !viewerContainerRef.current || !project?.images) return;
@@ -452,6 +453,18 @@ useEffect(() => {
   };
 
 }, [showGalleryModal, currentImageIndex, project]);
+
+useEffect(() => {
+  if (!project?.images || isHovered) return;
+
+  const interval = setInterval(() => {
+    setCurrentImageIndex((prev) =>
+      prev === project.images.length - 1 ? 0 : prev + 1
+    );
+  }, 3000);
+
+  return () => clearInterval(interval);
+}, [project, isHovered]);
 
   useEffect(() => {
     fetchProject();
@@ -705,7 +718,11 @@ const longitude = project.longitude;
 
   <h2 className="gallery-title">Project Gallery</h2>
 
-  <div className="gallery-main">
+<div
+  className="gallery-main"
+  onMouseEnter={() => setIsHovered(true)}
+  onMouseLeave={() => setIsHovered(false)}
+>
 
     <button
       className="gallery-arrow left"
